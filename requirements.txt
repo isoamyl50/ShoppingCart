@@ -1,0 +1,21 @@
+Shopping Cart
+ * Implement a shopping cart for an e-comerce website using a doubly linked list.
+ * Allow users to add and remove items and adjust quantities.
+
+class Item:
+    - Has Properties of an shopping cart item (id, name, quantity)
+    - Has prev/next (in a doubly linked-list)
+
+    - A constructor/constructors
+
+    - getNext(), getPrevious() methods to access the next and previous nodes
+    - setNext(), setPrevious() methods to update the next and previous nodes
+
+    - getters/setters for properties (id, name, quantity).
+
+
+class ShoppingCart:
+    - head/tail nodes
+
+    - Constructors, isEmpty(), clear()
+    - add item, remove item, adjust quantities 
