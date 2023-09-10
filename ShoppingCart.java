@@ -14,19 +14,6 @@
  */
 
 public class ShoppingCart {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-        // ShoppingCart cart = new ShoppingCart();
-
-        // cart.add("iPhone 14", 3);
-        // cart.add("AirPods", 1);
-        // cart.add("AirTags", 4);
-        // cart.add("Pro Display XDR", 1);
-        // cart.add("Pro Stand", 1);
-
-        // cart.remove(1);
-        // System.out.println(cart);
-    }
 
     int size = 0;
     Item head, tail;
