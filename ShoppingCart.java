@@ -120,6 +120,10 @@ public class ShoppingCart {
             current = current.getNext();
         }
 
+        if (position == 0) {
+            sb.append("No item.");
+        }
+
         return sb.toString();
     }
 

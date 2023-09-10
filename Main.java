@@ -3,9 +3,26 @@ import java.util.Scanner;
 public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
+    
+    // A hard-coded string for actions
+    private static final String ACTIONS = "Shopping Cart\n=============\n1. Print items\n2. Add item\n3. Remove item\n4. Adjust quantity\n5. Quit.\n";
 
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        ShoppingCart cart = new ShoppingCart();
+        boolean breakFlag = false;
+
+        while (!breakFlag) {
+            System.out.println(ACTIONS);
+            switch (getNaturalInt("Select an option: ")) {
+                case 1 -> System.out.println(cart);
+                case 2 -> addItem(cart);
+                case 3 -> removeItem(cart);
+                case 4 -> adjustQuantity(cart);
+                case 5 -> breakFlag = true;
+                default -> System.out.println("Invalid option.");
+            }
+            System.out.println("\n");
+        }
     }
 
     private static void adjustQuantity(ShoppingCart cart) {
