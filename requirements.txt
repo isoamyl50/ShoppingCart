@@ -19,3 +19,22 @@ class ShoppingCart:
 
     - Constructors, isEmpty(), clear()
     - add item, remove item, adjust quantities 
+
+
+
+- When interacting with user
+    - Add item:
+        - Ask user to input data (name, quantity)
+        - Insert the item into the end of the list using add()
+
+    - Remove item:
+        - Print out the list
+        - Prompt user to input the position of the element to remove
+        - Remove the element by calling remove(position). If remove() yields false, print an error message.
+
+    - Adjust quantities:
+        - Print out the list
+        - Prompt user to input the postition of the element to adjust
+        - Prompt user to input the new quantity
+        - Check for zero: call remove()
+          if not zero: update the quantity by calling setQuantity() method on an item.

@@ -15,18 +15,20 @@
 
 public class ShoppingCart {
     public static void main(String[] args) {
-        ShoppingCart shoppingCart = new ShoppingCart();
+        System.out.println("Hello, World!");
+        // ShoppingCart cart = new ShoppingCart();
 
-        shoppingCart.add(1, "Apple iPhone 14", 1);
-        shoppingCart.add(2, "Apple AirTags", 4);
-        shoppingCart.add(3, "Apple MacBook Air", 2);
-        shoppingCart.add(4, "Apple Pro Display XDR", 1);
-        shoppingCart.add(5, "Apple Pro Stand", 1);
+        // cart.add("iPhone 14", 3);
+        // cart.add("AirPods", 1);
+        // cart.add("AirTags", 4);
+        // cart.add("Pro Display XDR", 1);
+        // cart.add("Pro Stand", 1);
 
-        shoppingCart.remove(3);
-        System.out.println(shoppingCart);
+        // cart.remove(1);
+        // System.out.println(cart);
     }
 
+    int size = 0;
     Item head, tail;
 
     public ShoppingCart() {
@@ -43,62 +45,86 @@ public class ShoppingCart {
     }
 
     public void clear() {
+        size = 0;
         head = null;
         tail = null;
     }
 
-    public void add(int id, String name, int quantity) {
+    public int size() {
+        return size;
+    }
+
+    public void add(String name, int quantity) {
         if (isEmpty()) {
-            head = new Item(id, name, quantity, null, null);
+            head = new Item(name, quantity, null, null);
             tail = head;
+            size++;
             return;
         }
 
-        Item newNode = new Item(id, name, quantity, tail, null);
+        Item newNode = new Item(name, quantity, tail, null);
         tail.setNext(newNode);
         tail = newNode;
+        size++;
     }
 
-    public boolean remove(int id) {
+    public Item get(int position) {
         Item current = head;
 
-        while (current != null) {
-
-            if (current.getId() == id) {
-                if (current == head) {
-                    head = head.getNext();
-                    head.setPrevious(null);
-                } else if (current == tail) {
-                    tail = tail.getPrevious();
-                    tail.setNext(null);
-                } else {
-                    current.getPrevious().setNext(current.getNext());
-                    current.getNext().setPrevious(current.getPrevious());
-                }
-                return true;
-            }
-
+        for (int i = 0; i < position && current != null; i++) {
             current = current.getNext();
         }
 
-        return false;
+        return current;
+    }
+
+    public Item remove(int position) {
+        Item current = head;
+        if (position < 0 || position >= size) {
+            return null;
+        }
+
+        for (int i = 0; i < position && current != null; i++) {
+            current = current.getNext();
+        }
+
+        if (current == head) {
+            // The case of only one element
+            if (head == tail) {
+                head = null;
+                tail = null;
+            } else {
+                head = head.getNext();
+                head.setPrevious(null);
+            }
+        } else if (current == tail) {
+            tail = tail.getPrevious();
+            tail.setNext(null);
+        } else {
+            current.getPrevious().setNext(current.getNext());
+            current.getNext().setPrevious(current.getPrevious());
+        }
+
+        size--;
+        return current;
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
         Item current = head;
+        int position = 0;
         while (current != null) {
-            sb.append("id=" + current.getId() + ", name=\'" + current.getName() + "\', quantity=" + current.getQuantity() + ".\n");
+            sb.append("position=" + position + ", " + current + ".\n");
+            position++;
             current = current.getNext();
         }
 
         return sb.toString();
     }
 
-    private class Item {
+    public class Item {
         // Properties of an item
-        private int id;
         private String name;
         private int quantity;
 
@@ -107,8 +133,7 @@ public class ShoppingCart {
         private Item next;
 
         // Constructor
-        public Item(int id, String name, int quantity, Item previous, Item next) {
-            this.setId(id);
+        public Item(String name, int quantity, Item previous, Item next) {
             this.setName(name);
             this.setQuantity(quantity);
             this.setPrevious(previous);
@@ -116,14 +141,6 @@ public class ShoppingCart {
         }
 
         // Getters and setters
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
         public String getName() {
             return name;
         }
@@ -144,7 +161,7 @@ public class ShoppingCart {
             return previous;
         }
 
-        public void setPrevious(Item previous) {
+        private void setPrevious(Item previous) {
             this.previous = previous;
         }
 
@@ -152,8 +169,13 @@ public class ShoppingCart {
             return next;
         }
 
-        public void setNext(Item next) {
+        private void setNext(Item next) {
             this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            return "name=\'" + getName() + "\', quantity=" + getQuantity();
         }
     }
 }
