@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class Main {
     /*
-     * This class is intended for purpose of providing a demonstration of the functions implemented in the ShoppingCart class,
+     * This class is is a simulation of a shopping cart, which is intended for purpose of 
+     * providing a demonstration of the functions implemented in the ShoppingCart class,
      * with interactive menu and prompts.
      */ 
 

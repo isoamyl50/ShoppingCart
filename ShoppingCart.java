@@ -14,10 +14,11 @@
  */
 
 public class ShoppingCart {
-
+    // Store the size of the list, instead of calculating the size every time
     int size = 0;
     Item head, tail;
 
+    // Constructors
     public ShoppingCart() {
         clear();
     }
@@ -37,24 +38,27 @@ public class ShoppingCart {
         tail = null;
     }
 
+    // Return the length of the linked list
     public int size() {
         return size;
     }
 
+    // Add an item to the end of the linked list
     public void add(String name, int quantity) {
         if (isEmpty()) {
+            // The added item is the first item
             head = new Item(name, quantity, null, null);
             tail = head;
-            size++;
-            return;
+        } else {
+            // The added item is not the first item
+            tail.setNext(new Item(name, quantity, tail, null));
+            tail = tail.getNext();
         }
 
-        Item newNode = new Item(name, quantity, tail, null);
-        tail.setNext(newNode);
-        tail = newNode;
         size++;
     }
 
+    // Return an item with a given zero-indexed position in the linked list
     public Item get(int position) {
         Item current = head;
 
@@ -65,6 +69,7 @@ public class ShoppingCart {
         return current;
     }
 
+    // Remove an item with a given zero-indexed position in the linked list
     public Item remove(int position) {
         Item current = head;
         if (position < 0 || position >= size) {
@@ -96,6 +101,7 @@ public class ShoppingCart {
         return current;
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
