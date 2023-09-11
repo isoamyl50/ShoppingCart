@@ -1,0 +1,13 @@
+classDiagram
+direction BT
+class Main {
+  + Main() 
+  - loadHardedCodedSamples(ShoppingCart) void
+  - adjustQuantity(ShoppingCart) void
+  - input(String) String?
+  - removeItem(ShoppingCart) void
+  - addItem(ShoppingCart) void
+  + main(String[]) void
+  - getNaturalInt(String) int
+}
+

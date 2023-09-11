@@ -4,7 +4,7 @@
  * Group 4 - SE17D08
  * 
  * Shopping Cart
- * Implement a shopping cart for an e-comerce website using a doubly linked list.
+ * Implement a shopping cart for an e-commerce website using a doubly linked list.
  * Allow users to add and remove items and adjust quantities.
  * 
  * This is just a simple program to play with the doubly linked list data structure
@@ -166,7 +166,7 @@ public class ShoppingCart {
 
         @Override
         public String toString() {
-            return "name=\'" + getName() + "\', quantity=" + getQuantity();
+            return "name='" + getName() + "', quantity=" + getQuantity();
         }
     }
 }

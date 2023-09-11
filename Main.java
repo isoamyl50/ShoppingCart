@@ -2,11 +2,11 @@ import java.util.Scanner;
 
 public class Main {
     /*
-     * This class is intended for purpose of providing a demonstation of the functions implemented in the ShoppingCart class,
+     * This class is intended for purpose of providing a demonstration of the functions implemented in the ShoppingCart class,
      * with interactive menu and prompts.
      */ 
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     
     // A hard-coded string for actions
     private static final String ACTIONS = "Shopping Cart\n=============\n1. Print items\n2. Add item\n3. Remove item\n4. Adjust quantity\n5. Quit.\n";
@@ -24,10 +24,10 @@ public class Main {
                 case 4 -> adjustQuantity(cart);
                 case 5 -> breakFlag = true;
                 // Case 50 FOR DEMO
-                case 50 -> loadHardedCodedSamples(cart);
+                case 50 -> loadHardCodedSamples(cart);
                 default -> System.out.println("Invalid option.");
             }
-            System.out.println("\n");
+            input("Press enter to continue...");
         }
     }
 
@@ -100,11 +100,11 @@ public class Main {
 
     // FOR DEMO PURPOSE ONLY
     // Add some hard-coded items to the cart
-    private static void loadHardedCodedSamples(ShoppingCart cart) {
+    private static void loadHardCodedSamples(ShoppingCart cart) {
         System.out.println("Adding some hard-coded sample items to cart...");
 
         cart.add("Apple iPhone 14 Pro Max", 2);
-        cart.add("Apple Airtags", 8);
+        cart.add("Apple AirTags", 8);
         cart.add("Apple Pro Display XDR", 1);
         cart.add("Apple Pro Stand", 1);
         cart.add("Apple Cider Vinegar", 5);
