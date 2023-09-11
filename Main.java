@@ -9,13 +9,14 @@ public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
     
-    // A hard-coded string for actions
+    // A hard-coded string for menu
     private static final String ACTIONS = "Shopping Cart\n=============\n1. Print items\n2. Add item\n3. Remove item\n4. Adjust quantity\n5. Quit.\n";
 
     public static void main(String[] args) {
         ShoppingCart cart = new ShoppingCart();
         boolean breakFlag = false;
 
+        // Interactive menu
         while (!breakFlag) {
             System.out.println(ACTIONS);
             switch (getNaturalInt("Select an option: ")) {
@@ -25,23 +26,30 @@ public class Main {
                 case 4 -> adjustQuantity(cart);
                 case 5 -> breakFlag = true;
                 // Case 50 FOR DEMO
-                case 50 -> loadHardCodedSamples(cart);
+                case 13 -> loadHardCodedSamples(cart);
                 default -> System.out.println("Invalid option.");
             }
+
             input("Press enter to continue...");
         }
     }
 
+    // Interactively adjust the quantity of an item in cart
     private static void adjustQuantity(ShoppingCart cart) {
         System.out.println(cart);
+        if (cart.size() == 0) {
+            return;
+        }
 
+        // Prompt the user to input item position and quantity
         int position = -1;
         while (position < 0 || position >= cart.size()) {
-            position = getNaturalInt("Input the position of the item to update quantity: ");
+            position = getNaturalInt("Input the position of the item to update quantity (Max: " + (cart.size() - 1) + "): ");
         }
 
         int newQuantity = getNaturalInt("Input new quantity: ");
 
+        // Remove the item if new quantity is zero, or else update it
         if (newQuantity == 0) {
             cart.remove(position);
         } else {
@@ -49,10 +57,14 @@ public class Main {
         }
     }
 
+    // Interactively remove an item from cart
     private static void removeItem(ShoppingCart cart) {
         System.out.println(cart);
+        if (cart.size() == 0) {
+            return;
+        }
 
-        ShoppingCart.Item removedItem = cart.remove(getNaturalInt("Input position of the item to remove: "));
+        ShoppingCart.Item removedItem = cart.remove(getNaturalInt("Input position of the item to remove (Max: " + (cart.size() - 1) + "): "));
         if (removedItem == null) {
             System.out.println("Cannot remove the item with given index: item not found.");
             return;
@@ -61,9 +73,10 @@ public class Main {
         System.out.println("Successfully removed item: " + removedItem + ".");
     }
 
+    // Interactively add an item to the cart
     private static void addItem(ShoppingCart cart) {
         String name = input("Input name of item: ");
-        int quantity = getNaturalInt("Input number of " + name + ": ");
+        int quantity = getNaturalInt("Input number of '" + name + "'': ");
 
         cart.add(name, quantity);
     }
